@@ -71,9 +71,9 @@ class AccountController(Controller):
         """List users."""
         results, total = await users_service.list_and_count()
         for result in results:
-            print(result.__dict__)
+            print(result.__dict__)  # noqa: T201
         results, total = await users_service.list_and_count(used_at=None)
-        print(results, total)
+        print(results, total)  # noqa: T201
         return users_service.to_dto(results, total, *filters)
 
     @get(
