@@ -27,6 +27,7 @@ class User(orm.TimestampedDatabaseModel):
     is_superuser: Mapped[bool] = mapped_column(default=False)
     is_verified: Mapped[bool] = mapped_column(default=False)
     verified_at: Mapped[datetime | None] = mapped_column(info=dto.dto_field("read-only"))
+    used_at: Mapped[datetime | None]
     # -----------
     # ORM Relationships
     # ------------
