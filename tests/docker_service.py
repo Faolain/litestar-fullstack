@@ -47,7 +47,8 @@ class DockerServiceRegistry:
         self._running_services: set[str] = set()
         self.docker_ip = self._get_docker_ip()
         self._base_command = [
-            "docker-compose",
+            "docker",
+            "compose",
             "--file=tests/docker-compose.yml",
             "--project-name=app_pytest",
         ]
@@ -77,7 +78,7 @@ class DockerServiceRegistry:
         **kwargs: Any,
     ) -> None:
         if name not in self._running_services:
-            self.run_command("up", "-d", name)
+            self.run_command("up", "-d", name, "--wait")
             self._running_services.add(name)
 
             await wait_until_responsive(
